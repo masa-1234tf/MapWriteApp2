@@ -68,6 +68,11 @@ app.post("/", (req, res) => {
         }
     })
 })
+//disconnect user
+app.get("/disconnect", (req, res) => {
+    req.session.destroy()
+    res.redirect("/")
+})
 //Socket.io
 var draws = [];
 io.sockets.on('connection', function (socket) {
