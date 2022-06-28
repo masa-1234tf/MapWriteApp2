@@ -69,13 +69,28 @@ app.post("/", (req, res) => {
     })
 })
 //Socket.io
-io.on("connection", (socket) => {
-    console.log("connected")
-})
+var draws = [];
+io.sockets.on('connection', function (socket) {
 
+    console.log("Connected Socket.io")
 
-
+    if (draws.length > 0) {
+        socket.emit('first send', draws);
+    }
+    
+    socket.on('clear send', function () {
+        socket.broadcast.emit('clear user');
+        draws = [];
+    });
+    socket.on('server send', function (msg) {
+        socket.broadcast.emit('send user', msg);
+        draws.push(msg);
+    });
+    socket.on('disconnect', function () {
+        io.sockets.emit('user disconnected');
+    });
+});
 //connect
-app.listen(port, () => {
-    console.log(`Listening on ${port}`)
-})
+server.listen(port, () => {
+    console.log('server listening. Port:' + port);
+});

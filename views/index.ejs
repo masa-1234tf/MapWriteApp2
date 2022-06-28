@@ -9,13 +9,7 @@
     <title>SCUM MAP</title>
 </head>
 <body>
-    <header>
-        <h2>SCUM MAP</h2>
-        <% if(session !==undefined){ %>
-            <p>Hello <%= user %></p>
-        <%}%>
-    </header>
-    
+    <%- include("./__share/header"); %>
     <div class="main">
         <% if(session === undefined) {%>
              <%- include("./__share/login"); %> 
@@ -25,5 +19,7 @@
     </div>
     <%- include("./__share/footer"); %>
 </body>
+<script src="/socket.io/socket.io.js"></script>
+<script src="../public/javascripts/jquery-3.6.0.min.js"></script>
 <script src="../public/javascripts/paint.js"></script>
 </html>
