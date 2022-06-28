@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/stylesheets/reset.css">
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <title>SCUM MAP</title>
+</head>
+<body>
+    <header>
+        <h2>SCUM MAP</h2>
+        <% if(session !==undefined){ %>
+            <p>Hello <%= user %></p>
+        <%}%>
+    </header>
+    
+    <div class="main">
+        <% if(session === undefined) {%>
+             <%- include("./__share/login"); %> 
+        <%} else if(session !== undefined){ %>
+            <%- include("./__share/main"); %>
+        <%}%>
+    </div>
+    <%- include("./__share/footer"); %>
+</body>
+<script src="../public/javascripts/paint.js"></script>
+</html>
