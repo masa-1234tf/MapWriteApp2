@@ -1,11 +1,22 @@
 <header class="header">
-    <h2 class="title">SCUM MAP</h2>
-    <% if(session !==undefined){ %>
-        <p class=" header-coment">Hello <span class="userName"><%= user %></span></p>
-    <%}%>
-    <% if(session !==undefined){ %>
-        <div class="disconnect">
-            <a href="/disconnect">Disconnect</a>
+    <div class="header-main">
+        <h2 class="title">SCUM MAP</h2>
+        <% if(session !==undefined){ %>
+            <p class=" header-coment">Hello <span class="userName"><%= user %></span></p>
+        <%}%>
+        <% if(session !==undefined){ %>
+            <div class="disconnect">
+                <a href="/disconnect">Disconnect</a>
+            </div>
+        <%}%>
+    </div>
+    <div class="toggle_wrap">
+        <div class="toggle_switch">
+            <p>クリックでオープン</p>
         </div>
-    <%}%>
+        <div class="toggle_contents">
+            <p><a href="https://scum-map.com/en/">https://scum-map.com/en/</a></p>
+            <p><a href="https://scum.fandom.com/wiki/Scum_Wiki">https://scum.fandom.com/wiki/Scum_Wiki</a></p>
+        </div>
+    </div>
 </header>

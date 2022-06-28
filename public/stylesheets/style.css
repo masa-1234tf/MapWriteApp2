@@ -5,6 +5,7 @@
 }
 
 body {
+    margin-left: 0;
     height: 10000px;
     background-color: #fff;
     color: #000;
@@ -16,13 +17,17 @@ a {
 /*header*/
 .header {
     background-color: #222;
-    color: #fff;
-    display: flex;
     position: fixed;
     width: 100%;
+    display: block;
+    z-index: 5;
+}
+.header-main {
+    color: #fff;
+    display: flex;
     height: 60px;
     justify-content: space-between;
-    z-index: 5;
+
 }
 .title {
     margin-top: 15px;
@@ -35,8 +40,59 @@ a {
     text-transform: capitalize;
 }
 .disconnect {
+    box-shadow: 0.4rem 0.4rem 1.3rem 0.5rem rgba(0, 0, 0, 0.1);
     margin-top: 20px;
     margin-right: 50px;
+}
+.toggle_wrap:last-of-type {
+    border-bottom: 1px solid gray;
+}
+
+.toggle_switch {
+    position: relative;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.toggle_switch.open {
+    border-bottom: 1px solid gray;
+}
+
+.toggle_switch:hover {
+    opacity: 0.5;
+}
+
+.toggle_switch::after {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 11px;
+    background: url(../img/arrow_down.svg) no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+    transition: transform .2s;
+}
+
+.toggle_switch.open::after {
+    transform: rotateZ(180deg);
+    top: 46%;
+}
+
+.toggle_contents {
+    display: none;
+    padding: 5px 10px;
+}
+.toggle_contents { 
+    color: #ccc;
+}
+.toggle_contents p {
+    padding: 20px 14px;
+}
+.toggle_contents p:hover {
+    opacity: 1.8;
 }
 /*login-form*/
 .login {
@@ -46,8 +102,12 @@ a {
 
 /*canvas*/
 .display {
+    left: -10px;
+    cursor: crosshair;
+    width: 1075px;
+    height: 1079px;
     position: absolute;
-    top: 50px;
+    top:70px;
 }
 .canvas {
     width: 1075px;

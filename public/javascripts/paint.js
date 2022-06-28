@@ -1,5 +1,5 @@
 $(function() {
-    var offset = 5;
+    var offset = 3;
     var fromX;
     var fromY;
     var canvas = document.getElementById("myCanvas");
@@ -40,7 +40,7 @@ $(function() {
     });
     socket.on('send user', function (msg) {
         context.strokeStyle = msg.color;
-        context.lineWidth = 2;
+        context.lineWidth = 3;
         context.beginPath();
         context.moveTo(msg.fx, msg.fy);
         context.lineTo(msg.tx, msg.ty);
@@ -93,7 +93,7 @@ $(function() {
     function draw(e) {
         var toX = e.pageX - $('canvas').offset().left - offset;
         var toY = e.pageY - $('canvas').offset().top - offset;
-        context.lineWidth = 2;
+        context.lineWidth = 3;
         context.beginPath();
         context.moveTo(fromX, fromY);
         context.lineTo(toX, toY);
