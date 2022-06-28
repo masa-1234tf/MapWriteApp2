@@ -1,7 +1,7 @@
 <header class="header">
     <h2 class="title">SCUM MAP</h2>
     <% if(session !==undefined){ %>
-        <p class=" header-coment">Hello <%= user %></p>
+        <p class=" header-coment">Hello <span class="userName"><%= user %></span></p>
     <%}%>
     <% if(session !==undefined){ %>
         <div class="disconnect">

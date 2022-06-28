@@ -30,6 +30,9 @@ a {
 .header-coment{
     margin: 22px 200px 0 0;
 }
+.userName {
+    text-transform: capitalize;
+}
 .disconnect {
     margin-top: 20px;
     margin-right: 50px;
