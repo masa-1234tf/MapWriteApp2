@@ -28,13 +28,18 @@ a {
     font-size: 40px;
 }
 .header-coment{
-    margin: 20px 500px 0 0;
+    margin: 22px 200px 0 0;
+}
+.disconnect {
+    margin-top: 20px;
+    margin-right: 50px;
 }
 /*login-form*/
 .login {
     position: absolute;
     margin: 300px;
 }
+
 /*canvas*/
 .canvas {
     margin-left: 10%;
