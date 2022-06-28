@@ -5,7 +5,7 @@ $(function() {
     var canvas = document.getElementById("myCanvas");
     var drawFlag = false;
     var w = 1075;
-    var h = 1079;
+    var h = 1075;
     var context = $("canvas").get(0).getContext('2d');
     var socket = io.connect('/');
     // Image オブジェクトを生成
