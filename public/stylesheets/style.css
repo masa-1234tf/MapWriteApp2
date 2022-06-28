@@ -26,6 +26,11 @@ body {
 .header-coment{
     margin: 20px 500px 0 0;
 }
+/*login-form*/
+.login {
+    position: absolute;
+    margin: 300px;
+}
 /*canvas*/
 .canvas {
     margin-left: 10%;
