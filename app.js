@@ -50,15 +50,30 @@ var UserSchema = new Schema({
         required: true
     }
 })
+var BoardSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    textBody: {
+        type: String
+    }
+})
+//Schema Model
 var UserModel = mongoose.model("mapappusers", UserSchema)
-//routes
+var BoardModel = mongoose.model("mapappborad", BoardSchema)
 
+//routes
 //index page
+//ソケットデータに名前を追加し人の書いた絵を消せないようにする
 app.get("/", (req, res) => {
     res.render("index", { user: req.session.user, session: req.session.userId })
 })
 //login
-app.post("/", (req, res) => {
+app.get("/", (req, res) => {
+    res.render("./__share/login")
+})
+app.post("/login", (req, res) => {
     UserModel.findOne({ name: req.body.name }, (err, savedUserData) => {
         if (savedUserData) {
             if (req.body.password === savedUserData.password) {
@@ -71,11 +86,25 @@ app.post("/", (req, res) => {
         }
     })
 })
+
+app.get("/board", (req, res) => {
+    res.render("./__share/board")
+})
+app.post("/board", (req, res) => {
+    BoardModel
+})
+
 //disconnect user
 app.get("/disconnect", (req, res) => {
     req.session.destroy()
     res.redirect("/")
 })
+
+
+
+
+
+
 //Socket.io
 var draws = [];
 io.sockets.on('connection', function (socket) {
@@ -98,6 +127,9 @@ io.sockets.on('connection', function (socket) {
         io.sockets.emit('user disconnected');
     });
 });
+
+
+
 //connect
 server.listen(port, () => {
     console.log('server listening. Port:' + port);

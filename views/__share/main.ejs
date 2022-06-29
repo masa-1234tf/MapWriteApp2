@@ -14,9 +14,28 @@
     
         <div id="button">
             <input type="button" id="clear" value="Clear" />
-            <input type="button" id="ScaleUp" value="ScaleUp" style="display: none;">
-            <input type="button" id="ScaleDown" value="Scaledown"style="display: none;">
+            <input type="button" id="save" value="Save" />
         </div>
     </div>
+            
 
+</div>
+<div id="save-from">
+    <h2>*まだ未実装</h2>
+    <form action="/comment" method="POST">
+        <div>
+            <label>NAME</label>
+            <input type="text" name="name" value="<%= user %>" autofocus required>
+        </div>
+        <div>
+            <label>Comment</label>
+            <input type="Comment" name="Comment" required>
+        </div>
+        <div>
+            <a href="/save">
+                <button type="submit">Send</button>
+            </a>
+        <button id="save-close">Close</button>
+        </div>
+    </form>
 </div>

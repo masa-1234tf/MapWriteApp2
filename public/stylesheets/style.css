@@ -177,9 +177,9 @@ form {
 }
 
 .toolbar {
+    left: 50px;
     bottom: 100px;
     position: fixed;
-    display: flex;
 }
 
 #button {
@@ -191,6 +191,13 @@ form {
     font-size: 120%;
     width: 80px;
     height: 50px;
+}
+#save-from {
+    background-color: #fff;
+    position: fixed;
+    z-index: 6;
+    top: 300px;
+    display: none;
 }
 
 #clear {
