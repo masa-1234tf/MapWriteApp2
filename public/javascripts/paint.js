@@ -87,16 +87,6 @@ $(function () {
             context.drawImage(img, 10, 10);
         }
     });
-    $('#ScaleUp').click(function (e) {
-        console.log("scaleup")
-        context.scale(1.5, 1.5);
-        context.drawImage(img, 50, 50);
-    });
-    $('#ScaleDown').click(function (e) {
-        console.log("scaleup")
-        context.scale(0.5, 0.5);
-        context.drawImage(img, 50, 50);
-    });
  
     function draw(e) {
         var toX = e.pageX - $('canvas').offset().left - offset;
