@@ -105,10 +105,4 @@ $(function() {
         fromX = toX;
         fromY = toY;
     }
- 
-    $('#save').click(function() {
-        var d = $("canvas")[0].toDataURL("image/png");
-        d = d.replace("image/png", "image/octet-stream");
-        window.open(d,"save");
-    });
 });

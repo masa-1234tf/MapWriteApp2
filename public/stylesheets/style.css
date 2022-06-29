@@ -29,6 +29,9 @@ a {
     justify-content: space-between;
 
 }
+.logo-title {
+    display: flex;
+}
 .title {
     margin-top: 15px;
     font-size: 40px;

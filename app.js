@@ -4,6 +4,8 @@ var session = require("express-session")
 var http = require("http")
 var mongoose = require("mongoose")
 var socketIo = require("socket.io")
+var favicon = require("serve-favicon")
+var path = require("path")
 
 var app = express()
 var server = http.Server(app);
@@ -14,7 +16,8 @@ app.use(express.urlencoded({ extended: true }))
 //.envFile
 var port = process.env.PORT
 var mongo_url = process.env.MONGODB_URI
-
+//favicon
+app.use(favicon(path.join(__dirname, './public/image', 'favicon.ico')))
 //engine set up
 app.set("view engine", "ejs")
 app.use("/public", express.static("public"))
