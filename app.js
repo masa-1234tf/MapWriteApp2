@@ -27,7 +27,7 @@ app.use(session({
     secret: "secretKey",
     resave: false,
     saveUninitialized: false,
-    cookie:{ maxAge: 60*60*1000 }   //session 1hour
+    cookie:{ maxAge: 3*60*60*1000 }   //session 3hour
 }))
 
 // Connecting to MongoDB

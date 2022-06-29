@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     var offset = 3;
     var fromX;
     var fromY;
@@ -45,49 +45,57 @@ $(function() {
         context.moveTo(msg.fx, msg.fy);
         context.lineTo(msg.tx, msg.ty);
         context.stroke();
-        context.closePath(); 
+        context.closePath();
     });
  
     socket.on('clear user', function () {
         context.clearRect(0, 0, $('canvas').width(), $('canvas').height());
     });
  
-    $('canvas').mousedown(function(e) {
+    $('canvas').mousedown(function (e) {
         drawFlag = true;
         fromX = e.pageX - $(this).offset().left - offset;
         fromY = e.pageY - $(this).offset().top - offset;
         return false;  // for chrome
     });
  
-    $('canvas').mousemove(function(e) {
+    $('canvas').mousemove(function (e) {
         if (drawFlag) {
             draw(e);
         }
     });
  
-    $('canvas').on('mouseup', function() {
+    $('canvas').on('mouseup', function () {
         drawFlag = false;
     });
  
-    $('canvas').on('mouseleave', function() {
+    $('canvas').on('mouseleave', function () {
         drawFlag = false;
     });
  
-    $('li').click(function() {
+    $('li').click(function () {
         context.strokeStyle = $(this).css('background-color');
     });
  
-    $('#clear').click(function(e) {
+    $('#clear').click(function (e) {
         socket.emit('clear send');
         e.preventDefault();
         context.clearRect(0, 0, $('canvas').width(), $('canvas').height());
         var img = new Image();
         img.src = './public/image/20220618044054_1.jpg';
-
-        // 画像読み込み終了してから描画
         img.onload = function () {
             context.drawImage(img, 10, 10);
         }
+    });
+    $('#ScaleUp').click(function (e) {
+        console.log("scaleup")
+        context.scale(1.5, 1.5);
+        context.drawImage(img, 50, 50);
+    });
+    $('#ScaleDown').click(function (e) {
+        console.log("scaleup")
+        context.scale(0.5, 0.5);
+        context.drawImage(img, 50, 50);
     });
  
     function draw(e) {
@@ -101,7 +109,7 @@ $(function() {
         context.closePath();
  
         // サーバへメッセージ送信
-        socket.emit('server send', { fx:fromX, fy:fromY, tx:toX, ty:toY, color:context.strokeStyle });
+        socket.emit('server send', { fx: fromX, fy: fromY, tx: toX, ty: toY, color: context.strokeStyle });
         fromX = toX;
         fromY = toY;
     }

@@ -1,9 +1,19 @@
-<div class="login">
+<div class="form-wrapper">
     <form action="/" method="POST">
-        <label>NAME</label>
-        <input type="text" name="name"required>
-        <label>Password</label>
-        <input type="password" name="password" required>
-        <button type="submit">Login</button>
+        <div class="form-item">
+            <label>NAME</label>
+            <input type="text" name="name" required>
+        </div>
+        <div class="form-item">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+        <div class="button-panel">
+            <input type="submit" class="button" title="Sign In" value="Sign In"></input>
+        </div>
     </form>
+    <div class="form-footer">
+        <p><a href="#">Create an account</a></p>
+        <p><a href="#">Forgot password?</a></p>
+    </div>
 </div>
