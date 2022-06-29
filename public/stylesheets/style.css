@@ -169,6 +169,9 @@ form {
 }
 
 .canvas canvas {
+    background-image: url(../image/20220618044054_1.jpg);
+    /* 画像のURLを指定       */
+    background-repeat: no-repeat;
     width: 1075px;
     height: 1079px;
 }

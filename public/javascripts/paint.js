@@ -8,6 +8,7 @@ $(function () {
     var h = 1079;
     var context = $("canvas").get(0).getContext('2d');
     var socket = io.connect('/');
+    /*
     // Image オブジェクトを生成
     var img = new Image();
     img.src = './public/image/20220618044054_1.jpg';
@@ -16,6 +17,7 @@ $(function () {
     img.onload = function () {
         context.drawImage(img, 10, 10);
     }
+    */
 
     canvas.width = w;
     canvas.height = h;
@@ -50,11 +52,13 @@ $(function () {
  
     socket.on('clear user', function () {
         context.clearRect(0, 0, $('canvas').width(), $('canvas').height());
+        /*
         var img = new Image();
         img.src = './public/image/20220618044054_1.jpg';
         img.onload = function () {
             context.drawImage(img, 10, 10);
         }
+        */
     });
  
     $('canvas').mousedown(function (e) {
@@ -86,11 +90,13 @@ $(function () {
         socket.emit('clear send');
         e.preventDefault();
         context.clearRect(0, 0, $('canvas').width(), $('canvas').height());
+        /*
         var img = new Image();
         img.src = './public/image/20220618044054_1.jpg';
         img.onload = function () {
             context.drawImage(img, 10, 10);
         }
+         */
     });
  
     function draw(e) {
