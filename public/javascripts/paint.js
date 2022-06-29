@@ -30,7 +30,7 @@ $(function () {
         //console.log(msg);
         for (key in msg) {
             context.strokeStyle = msg[key].color;
-            context.lineWidth = 2;
+            context.lineWidth = 3;
             context.beginPath();
             context.moveTo(msg[key].fx, msg[key].fy);
             context.lineTo(msg[key].tx, msg[key].ty);
@@ -50,6 +50,11 @@ $(function () {
  
     socket.on('clear user', function () {
         context.clearRect(0, 0, $('canvas').width(), $('canvas').height());
+        var img = new Image();
+        img.src = './public/image/20220618044054_1.jpg';
+        img.onload = function () {
+            context.drawImage(img, 10, 10);
+        }
     });
  
     $('canvas').mousedown(function (e) {
