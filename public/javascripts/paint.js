@@ -62,7 +62,7 @@ $(function () {
         }
         //display POS XY
         var rect = e.target.getBoundingClientRect()
-        var x = e.clientX - rect.left
+        var x =  parseInt(e.clientX - rect.left,10)
         var y = parseInt(e.clientY - rect.top,10)
         document.getElementById("PosXY").innerHTML = `"X="${x-10}:"Y="${y-1}`
         console.log(`${x}:${y}`)
