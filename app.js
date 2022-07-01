@@ -11,6 +11,7 @@ var app = express()
 var server = http.Server(app);
 var io = socketIo(server)
 var Schema = mongoose.Schema
+var sessionMiddleware = app.session
 app.use(express.urlencoded({ extended: true }))
 
 //.envFile
@@ -23,12 +24,14 @@ app.set("view engine", "ejs")
 app.use("/public", express.static("public"))
 
 //Session
-app.use(session({
+var sessionMiddleware = session({
     secret: "secretKey",
     resave: false,
     saveUninitialized: false,
     cookie:{ maxAge: 3*60*60*1000 }   //session 3hour
-}))
+})
+app.session = sessionMiddleware;
+app.use(sessionMiddleware);
 
 // Connecting to MongoDB
 mongoose.connect(mongo_url)
@@ -70,15 +73,14 @@ app.get("/", (req, res) => {
     res.render("index", { user: req.session.user, session: req.session.userId })
 })
 //login
-app.get("/", (req, res) => {
-    res.render("./__share/login")
-})
+var userName = []
 app.post("/login", (req, res) => {
     UserModel.findOne({ name: req.body.name }, (err, savedUserData) => {
         if (savedUserData) {
             if (req.body.password === savedUserData.password) {
                 req.session.userId = savedUserData._id //add session id
                 req.session.user = savedUserData.name  //add session name
+                userName.push(req.session.user)
                 res.redirect("/")
             }
         } else {
@@ -87,46 +89,39 @@ app.post("/login", (req, res) => {
     })
 })
 
-app.get("/board", (req, res) => {
-    res.render("./__share/board")
-})
-app.post("/board", (req, res) => {
-    BoardModel
-})
-
 //disconnect user
 app.get("/disconnect", (req, res) => {
     req.session.destroy()
     res.redirect("/")
 })
-
-
-
-
-
-
 //Socket.io
-var draws = [];
+//send session data 
+io.use(function (socket, next) {
+    sessionMiddleware(socket.request, socket.request.res, next);
+})
+
+var draws = []
 io.sockets.on('connection', function (socket) {
 
-    console.log("Connected Socket.io")
+    userName.name = socket.request.session.username
+    console.log("socket.io connected user name:" + userName[0])
 
     if (draws.length > 0) {
         socket.emit('first send', draws);
     }
-    
-    socket.on('clear send', function () {
+        
+    socket.on('clear send', () => {
         socket.broadcast.emit('clear user');
         draws = [];
-    });
-    socket.on('server send', function (msg) {
+    })
+    socket.on('server send', (msg) => {
         socket.broadcast.emit('send user', msg);
         draws.push(msg);
-    });
-    socket.on('disconnect', function () {
+    })
+    socket.on('disconnect', () => {
         io.sockets.emit('user disconnected');
-    });
-});
+    })
+})
 
 
 

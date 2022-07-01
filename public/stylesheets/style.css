@@ -175,6 +175,17 @@ form {
     width: 1075px;
     height: 1079px;
 }
+.PosXY {
+    position: fixed;
+    z-index: 7;
+    top: 100px;
+    color: #ccc;
+    display: flex;
+    font-size: 30px;
+}
+.PosXY p {
+    font-size: 30px;
+}
 
 .toolbar {
     left: 50px;

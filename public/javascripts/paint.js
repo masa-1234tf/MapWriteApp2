@@ -8,17 +8,6 @@ $(function () {
     var h = 1079;
     var context = $("canvas").get(0).getContext('2d');
     var socket = io.connect('/');
-    /*
-    // Image オブジェクトを生成
-    var img = new Image();
-    img.src = './public/image/20220618044054_1.jpg';
-
-    // 画像読み込み終了してから描画
-    img.onload = function () {
-        context.drawImage(img, 10, 10);
-    }
-    */
-
     canvas.width = w;
     canvas.height = h;
     context.strokeStyle = "#000000";
@@ -26,10 +15,8 @@ $(function () {
     context.lineJoin = "round";
     context.lineCap = "round";
 
- 
     // サーバからメッセージ受信
     socket.on('first send', function (msg) {
-        //console.log(msg);
         for (key in msg) {
             context.strokeStyle = msg[key].color;
             context.lineWidth = 3;
@@ -38,6 +25,7 @@ $(function () {
             context.lineTo(msg[key].tx, msg[key].ty);
             context.stroke();
             context.closePath();
+            console.log("first send")
         }
     });
     socket.on('send user', function (msg) {
@@ -48,18 +36,18 @@ $(function () {
         context.lineTo(msg.tx, msg.ty);
         context.stroke();
         context.closePath();
+        console.log("send user")
     });
- 
+    
+    socket.on('login',function () {
+    socket.emit('login',prompt('login'));
+});
+
     socket.on('clear user', function () {
         context.clearRect(0, 0, $('canvas').width(), $('canvas').height());
-        /*
-        var img = new Image();
-        img.src = './public/image/20220618044054_1.jpg';
-        img.onload = function () {
-            context.drawImage(img, 10, 10);
-        }
-        */
+        console.log("clear user")
     });
+
  
     $('canvas').mousedown(function (e) {
         drawFlag = true;
@@ -72,6 +60,11 @@ $(function () {
         if (drawFlag) {
             draw(e);
         }
+        var rect = e.target.getBoundingClientRect()
+        var x = e.clientX - rect.left
+        var y = e.clientY - rect.top
+        document.getElementById("PosXY").innerHTML = `"X="${x-10}:"Y="${y-1}`
+        console.log(`${x}:${y}`)
     });
  
     $('canvas').on('mouseup', function () {
