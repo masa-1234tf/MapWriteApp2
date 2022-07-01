@@ -60,6 +60,7 @@ $(function () {
         if (drawFlag) {
             draw(e);
         }
+        //display POS XY
         var rect = e.target.getBoundingClientRect()
         var x = e.clientX - rect.left
         var y = parseInt(e.clientY - rect.top,10)
