@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="title" content="NGU SCUM MAP">
-    <meta name="discription" content="NGU専用SCUMのマップツール、ペンで居場所を伝えたり敵の拠点情報を共有したりしています。">
-    <link rel="stylesheet" href="../public/stylesheets/reset.css">
-    <link rel="stylesheet" href="../public/stylesheets/style.css">
-    <title>NGU SCUM MAP</title>
-</head>
+<%- include("./__share/head"); %>
 <body>
     <%- include("./__share/header"); %>
     <div class="main">
@@ -22,9 +12,5 @@
     </div>
     <%- include("./__share/footer"); %>
 </body>
-<script src="/socket.io/socket.io.js"></script>
-<script src="../public/javascripts/jquery-3.6.0.min.js"></script>
-<script src="../public/javascripts/toggle.js"></script>
-<script src="../public/javascripts/paint.js"></script>
-<script src="../public/javascripts/saveBtn.js"></script>
+<%- include("./__share/javascripts"); %>
 </html>
