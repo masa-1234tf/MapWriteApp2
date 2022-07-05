@@ -6,6 +6,7 @@ var mongoose = require("mongoose")
 var socketIo = require("socket.io")
 var favicon = require("serve-favicon")
 var path = require("path")
+var routers = require("./routes")
 
 var app = express()
 var server = http.Server(app);
@@ -43,35 +44,11 @@ mongoose.connect(mongo_url)
     })
 
 //Schema
-var UserSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
-    }
-})
-var BoardSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    textBody: {
-        type: String
-    }
-})
 //Schema Model
-var UserModel = mongoose.model("mapappusers", UserSchema)
-var BoardModel = mongoose.model("mapappborad", BoardSchema)
-
+var UserModel = require("./models/user")
 //routes
+app.use(routers)
 //index page
-//ソケットデータに名前を追加し人の書いた絵を消せないようにする
-app.get("/", (req, res) => {
-    res.render("index", { user: req.session.user, session: req.session.userId })
-})
 //login
 var userName = []
 app.post("/login", (req, res) => {
@@ -88,18 +65,12 @@ app.post("/login", (req, res) => {
         }
     })
 })
-
 //disconnect user
-app.get("/disconnect", (req, res) => {
-    req.session.destroy()
-    res.redirect("/")
-})
 //Socket.io
 //send session data 
 io.use(function (socket, next) {
     sessionMiddleware(socket.request, socket.request.res, next);
 })
-
 var draws = []
 io.sockets.on('connection', function (socket) {
 
