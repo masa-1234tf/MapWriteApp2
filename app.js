@@ -29,7 +29,7 @@ var sessionMiddleware = session({
     secret: "secretKey",
     resave: false,
     saveUninitialized: false,
-    cookie:{ maxAge: 3*60*60*1000 }   //session 3hour
+    cookie:{ maxAge: 24*60*60*1000 }   //session 3hour
 })
 app.session = sessionMiddleware;
 app.use(sessionMiddleware);

@@ -84,13 +84,12 @@ $(function () {
         socket.emit('clear send');
         e.preventDefault();
         context.clearRect(0, 0, $('canvas').width(), $('canvas').height());
-        /*
-        var img = new Image();
-        img.src = './public/image/20220618044054_1.jpg';
-        img.onload = function () {
-            context.drawImage(img, 10, 10);
-        }
-         */
+    });
+     // canvasを画像で保存
+    $("#download").click(function () {
+        canvas = document.getElementById('canvas');
+        var base64 = canvas.toDataURL("image/jpeg");
+        document.getElementById("download").href = base64;
     });
  
     function draw(e) {

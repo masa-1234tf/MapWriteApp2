@@ -1,8 +1,5 @@
-$(function () {
-    $('#save').on('click', () => {
-        $('#save-from').fadeIn();
-    });
-    $('#save-close').on('click', () => {
-        $('#save-from').fadeOut();
-    });
+$("#save").click(function () {
+    canvas = document.getElementById('display');
+    var base64 = canvas.toDataURL("image/jpeg");
+    document.getElementById("save").href = base64;
 });
